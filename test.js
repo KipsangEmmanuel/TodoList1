@@ -1,13 +1,13 @@
 document.addEventListener('DOMContentLoaded', function(){
-    // Selecting elements
-    const new_task = document.getElementById('new_task');
-    const submit = document.getElementById('submit');
-    const taskList = document.querySelector('.taskList');
+    const new_task = document.getElementById('new_task'); // Update: Select the input field for new tasks.
+    const submit = document.getElementById('submit'); // Update: Select the submit button.
+    const taskList = document.querySelector('.taskList'); // Update: Select the element where the tasks will be displayed.
     let todos = [];
 
+    // Check if there are stored tasks in local storage
     if (localStorage.getItem('todos')) {
         todos = JSON.parse(localStorage.getItem('todos'));
-        updateList();
+        updateList(); // Update: Call the function to update the task list from local storage.
     }
 
     function updateList() {
@@ -24,20 +24,9 @@ document.addEventListener('DOMContentLoaded', function(){
             const deleteButton = listItem.querySelector('.delete');
             const taskText = listItem.querySelector('span');
 
-            editButton.addEventListener('click', function() {
-                const newTaskText = prompt('Edit the task:', taskText.textContent);
-                if (newTaskText !== null && newTaskText.trim() !== '') {
-                    todos[index] = newTaskText;
-                    updateList();
-                    saveToLocalStorage();
-                }
-            });
+            // Update: Add code here to handle editing tasks when the "Edit" button is clicked.
 
-            deleteButton.addEventListener('click', function() {
-                todos.splice(index, 1);
-                updateList();
-                saveToLocalStorage();
-            });
+            // Update: Add code here to handle deleting tasks when the "Delete" button is clicked.
 
             taskList.appendChild(listItem);
         });
@@ -45,9 +34,14 @@ document.addEventListener('DOMContentLoaded', function(){
         saveToLocalStorage();
     }
 
+    // Update: Add code here to handle adding new tasks when the "Submit" button is clicked.
+
+    // Function to save the task list to local storage
     function saveToLocalStorage() {
         localStorage.setItem('todos', JSON.stringify(todos));
     }
+
+    // Update: Add code here to handle the initial loading of tasks.
 
     submit.addEventListener('click', function(e) {
         e.preventDefault();
