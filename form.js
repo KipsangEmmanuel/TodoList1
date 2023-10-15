@@ -24,6 +24,15 @@ document.addEventListener('DOMContentLoaded', function(){
             const deleteButton = listItem.querySelector('.delete');
             const taskText = listItem.querySelector('span');
 
+            taskText.addEventListener('click', function(){
+                taskText.classList.toggle('completed');
+                saveToLocalStorage();
+            });
+
+            if (todo.completed) {
+                taskText.classList.add('completed');
+            }
+
             editButton.addEventListener('click', function() {
                 const newTaskText = prompt('Edit the task:', taskText.textContent);
                 if (newTaskText !== null && newTaskText.trim() !== '') {
